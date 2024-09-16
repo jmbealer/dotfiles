@@ -1,0 +1,117 @@
+#!/usr/bin/bash
+# ~/.bashrc: executed by bash(1) for non-login shell.s
+
+# for ble.sh must be at top
+[[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# don't put duplicate lines in the history
+HISTCONTROL=ignoredups:ignorespace
+
+# Auto "cd"
+shopt -s autocd
+# apped the the history file, don't overwrite it
+shopt -s histappend
+
+# setting history length
+HISTSIZE=200
+HISTFILESIZE=400
+# need to move to profile
+# export HISTFILE="${XDG_STATE_HOME}"/bash/history
+
+source $HOME/.config/bash/bash_aliases
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+alias logseq='logseq --ozone-platform=wayland --disable-gpu'
+PS1='[\u@\h \W]\$ '
+
+export PATH=$PATH:/home/jb/.dotfiles/bin
+export LEIN_HOME="$XDG_DATA_HOME"/lein
+# export NB_DIR="$XDG_DATA_HOME/nb"
+export NB_DIR="${NB_DIR:-/home/jb/Documents/my-knowlege-base/}"
+export NBRC_PATH="$XDG_CONFIG_HOME/nbrc"
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+# to move yarn config file to XDG_CONFIG_HOME
+# yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config
+
+# color for less
+# export LESS_TERMCAP_mb=$'\e[01;31m' # begin blinking
+# export LESS_TERMCAP_md=$'\e[01;37m' # begin bold
+# export LESS_TERMCAP_me=$'\e[0m'     # end all mode like so, us, mb, md, mr
+# export LESS_TERMCAP_se=$'\e[0m'     # end standout-mode
+# export LESS_TERMCAP_so=$'\e[45;93m' # start standout mode
+# export LESS_TERMCAP_ue=$'\e[0m'     # end underline
+# export LESS_TERMCAP_us=$'\e[4;93m'  # start underlining
+
+export MANPAGER="nvim +Man!"
+
+export LESS_TERMCAP_mb=$(printf '\e[01;31m')       # enter blinking mode
+export LESS_TERMCAP_md=$(printf '\e[01;38;5;75m')  # enter double-bright mode
+export LESS_TERMCAP_me=$(printf '\e[0m')           # turn off all appearance modes (mb, md, so, us)
+export LESS_TERMCAP_se=$(printf '\e[0m')           # leave standout mode
+export LESS_TERMCAP_so=$(printf '\e[01;33m')       # enter standout mode
+export LESS_TERMCAP_ue=$(printf '\e[0m')           # leave underline mode
+export LESS_TERMCAP_us=$(printf '\e[04;38;5;200m') # enter underline mode
+
+# enable color support for ls
+. /usr/share/LS_COLORS/dircolors.sh
+
+eval "$(starship init bash)"
+eval "$(atuin init bash)"
+
+# Start tmux automatically
+if [ -z "$TMUX" ] && [ "$SSH_CONNECTION" = "" ]; then
+  # Start tmux only if not already inside a tmux session and not in SSH connection
+  tmux attach || tmux new-session
+fi
+
+# Source this just after the PS1-check to enable auto-tmuxing of your SSH
+# sessions. See https://github.com/spencertipping/bashrc-tmux for usage
+# information.
+
+# Double-check for interactivity: $PS1 needs to be set. This allows for
+# alternative interactivity-checks in .bashrc.
+if [ -n "$PS1" ]; then
+  TMUX_SESSION=ssh-$USER
+  if [[ -n "$BASHRC_TMUX_SESSION" ]]; then
+    TMUX_SESSION="$TMUX_SESSION-$BASHRC_TMUX_SESSION"
+  fi
+
+  if [[ -z "$TMUX" && -n "$SSH_CONNECTION" ]] && which tmux >&/dev/null; then
+    if ! tmux ls -F '#{session_name}' | egrep -q "^$TMUX_SESSION$"; then
+      tmux new-session -s $TMUX_SESSION \; detach
+    fi
+
+    # Allocating a session ID: always just bump the counter. Because of
+    # differences between bash and zsh, working with arrays to densely pack
+    # session IDs is cumbersome.
+
+    session_max=$(tmux ls -F '#{session_name}' |
+      egrep "^$TMUX_SESSION-[0-9]+$" |
+      sed "s/^$TMUX_SESSION-//" |
+      sort -rn |
+      head -n1)
+    session_index=$((${session_max:--1} + 1))
+
+    exec tmux new-session -s $TMUX_SESSION-$session_index -t $TMUX_SESSION
+  fi
+fi
+
+fastfetch
+
+# for ble.sh must be at bottom
+[[ ${BLE_VERSION-} ]] && ble-attach
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init bash)"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# Source the Lazyman shell initialization for aliases and nvims selector
+# shellcheck source=.config/nvim-Lazyman/.lazymanrc
+[ -f ~/.config/nvim-Lazyman/.lazymanrc ] && source ~/.config/nvim-Lazyman/.lazymanrc
+# Source the Lazyman .nvimsbind for nvims key binding
+# shellcheck source=.config/nvim-Lazyman/.nvimsbind
+[ -f ~/.config/nvim-Lazyman/.nvimsbind ] && source ~/.config/nvim-Lazyman/.nvimsbind
