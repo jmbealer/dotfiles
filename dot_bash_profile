@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+# ~/.bash_profile
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CONFIG_DIRS=/etc/xdg
+
+# moves .bash_history to .local/state/bash/history
+export HISTFILE="${XDG_STATE_HOME}"/bash/history
+# moves .nv to .cache/nv
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+# moves .gnupg to .local/share/gnupg
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+# moves go to .local/share/go
+export GOPATH="$XDG_DATA_HOME"/go
+export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
+# testing if it works
+export GOBIN="$XDG_DATA_HOME"/go/bin
+
+export PATH=$PATH:/home/jb/.dotfiles/bin
+# move ./.m2 to .local/share/lein
+export LEIN_HOME="$XDG_DATA_HOME"/lein
+# moves .nb to .local/share/nb
+# export NB_DIR="$XDG_DATA_HOME/nb"
+# moves .nbrc to .config/nbrc
+export NBRC_PATH="$XDG_CONFIG_HOME/nbrc"
+# moves .rustup to .local/share/rustup
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+
+# to move wget-hsts file to XDG_DATA_HOME
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+# to move yarn config file to XDG_CONFIG_HOME
+yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config
+
+# dont know if it worked
+CARGO_HOME="$XDG_DATA_HOME"/cargo
+RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+GTK2_RC_FILES=""$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+# VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
