@@ -54,3 +54,5 @@ alias sbas="source ~/.bashrc"
 # cd
 alias cdn="cd ~/Documents/my-knowlege-base/home"
 alias cdg="cd /run/media/jb/Elements-5TB/gdrive"
+alias cdp="cd ~/projects"
+alias cdc="cd ~/.config"
