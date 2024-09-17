@@ -350,3 +350,10 @@ keymap = [
 on = "b"
 run = "plugin --sync fast-enter"
 desc = "Enter the subfolder faster, or open the file directly"
+
+
+# add lazygit
+[[manager.prepend_keymap]]
+on = ["g", "i"]
+run = "plugin lazygit"
+desc = "run lazygit"
