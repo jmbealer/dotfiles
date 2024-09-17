@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+
+# List Commands
+if ! [ -x "$(command -v lsd)" ]; then
+  alias ls="ls --color=auto"
+  alias l="ls -lAH"
+  alias la="ls -a"
+  alias ll="ls -al"
+else
+  alias ls="lsd"
+  alias l="lsd -lAX"
+  alias lt="ls --tree"
+fi
+
+alias grep='grep --color=auto'
+
+# Confirmation
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
+alias rm='rm -I --preserve-root'
+
+#
+alias cat='bat'
+
+# to move wget-hsts file to XDG_DATA_HOME
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+alias vh="vim ~/Documents/my-knowlege-base/home/0-Home.md"
+alias vj="vim ~/Documents/my-knowlege-base/home/journals/journals.md"
+
+alias rmg="rclone mount --daemon gdrive: /home/jb/gdrive2/; cd /home/jb/gdrive2/"
+
+# Terminal File Manager
+alias tf="yazi"
+alias tfg="yazi /run/media/jb/Elements-5TB/gdrive"
+alias tfn="yazi /home/jb/Documents/my-knowlege-base/home"
+alias tfc="yazi /home/jb/.config"
+alias tfp="yazi /home/jb/projects"
+
+# alias lf="yazi"
+alias lfg="lf /run/media/jb/Elements-5TB/gdrive"
+alias lfn="lf /home/jb/Documents/my-knowlege-base/home"
