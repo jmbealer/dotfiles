@@ -41,3 +41,10 @@ alias tfp="yazi /home/jb/projects"
 # alias lf="yazi"
 alias lfg="lf /run/media/jb/Elements-5TB/gdrive"
 alias lfn="lf /home/jb/Documents/my-knowlege-base/home"
+
+# chezmoi
+alias cad="chezmoi add"
+alias ccd="chezmoi cd"
+
+# bash
+alias sbas="source ~/.bashrc"
