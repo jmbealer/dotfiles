@@ -8,7 +8,8 @@ if ! [ -x "$(command -v lsd)" ]; then
   alias ll="ls -al"
 else
   alias ls="lsd"
-  alias l="lsd -lAX"
+  # alias l="lsd -lAX"
+  alias l="lsd -la"
   alias lt="ls --tree"
 fi
 
