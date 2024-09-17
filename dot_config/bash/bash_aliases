@@ -26,8 +26,9 @@ alias cat='bat'
 # to move wget-hsts file to XDG_DATA_HOME
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
-alias vh="vim ~/Documents/my-knowlege-base/home/0-Home.md"
-alias vj="vim ~/Documents/my-knowlege-base/home/journals/journals.md"
+# vim
+alias vh="vi ~/Documents/my-knowlege-base/home/0-Home.md"
+# alias vj="vim ~/Documents/my-knowlege-base/home/journals/journals.md"
 
 alias rmg="rclone mount --daemon gdrive: /home/jb/gdrive2/; cd /home/jb/gdrive2/"
 
@@ -48,3 +49,7 @@ alias ccd="chezmoi cd"
 
 # bash
 alias sbas="source ~/.bashrc"
+
+# cd
+alias cdn="cd ~/Documents/my-knowlege-base/home"
+alias cdg="cd /run/media/jb/Elements-5TB/gdrive"
