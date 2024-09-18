@@ -28,7 +28,7 @@ alias cat='bat'
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 # vim
-alias vh="vi ~/Documents/my-knowlege-base/home/0-Home.md"
+alias vh="vi ~/Documents/my-knowlege-base/home/indexes/home-idx.md"
 # alias vj="vim ~/Documents/my-knowlege-base/home/journals/journals.md"
 
 alias rmg="rclone mount --daemon gdrive: /home/jb/gdrive2/; cd /home/jb/gdrive2/"
