@@ -1,0 +1,67 @@
+{
+  // Wallpaper
+  "custom/wallpaper": {
+    "format": "",
+    "on-click": "bash ~/.config/hypr/scripts/tools/wallpaper.sh random",
+    "on-click-middle": "bash ~/.config/hypr/scripts/tools/wallpaper.sh engine",
+    "on-click-right": "bash ~/.config/hypr/scripts/tools/wallpaper.sh select",
+    "tooltip-format": "󰆊 Switch wallpaper\n 󰳽 click-left:   Select random\n 󰳽 click-right:  Select wallpaper\n 󰳽 click-middle: Restart, wallpaper engine",
+    "interval" : "once"
+  },
+
+  // Notifications
+  "custom/notifications": {
+    "format": "{} {icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "email-notification": "<span foreground='red'><sup></sup></span>",
+      "chat-notification": "󱋊<span foreground='red'><sup></sup></span>",
+      "warning-notification": "󱨪<span foreground='yellow'><sup></sup></span>",
+      "error-notification": "󱨪<span foreground='red'><sup></sup></span>",
+      "network-notification": "󱂇<span foreground='white'><sup></sup></span>",
+      "battery-notification": "󰁺<span foreground='red'><sup></sup></span>",
+      "update-notification": "󰚰<span foreground='white'><sup></sup></span>",
+      "music-notification": "󰝚<span foreground='white'><sup></sup></span>",
+      "volume-notification": "󰕿<span foreground='white'><sup></sup></span>",
+      "dnd-notification": "<span foreground='white'><sup></sup></span>",
+      "none": "", "dnd": ""
+    },
+    "return-type": "json",
+    "exec-if": "which dunstctl",
+    "exec": "python ~/.config/dunst/client/notifications.py",
+    "interval": 3,
+    "tooltip": true,
+    "escape": true,
+
+    "on-click": "bash ~/.config/dunst/client/notifications.sh toggle",
+    "on-click-middle": "dunstctl history-clear",
+    "on-click-right": "dunstctl close-all",
+
+    "on-scroll-down": "sleep 0.1 && dunstctl history-pop",
+    "on-scroll-up": "sleep 0.1 && dunstctl history-pop"
+  },
+
+  //Media player
+  "mpris": {
+    "dynamic-len": 25,
+    "player-icons": {
+      "default": "",
+      "spotify": "",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "playing": "",
+      "paused": "⏸"
+    },
+
+    "format": "{player_icon}",
+    "format-alt": "{player_icon} | {status_icon} | {artist} - {title}",
+    "tooltip-format": "{player} - {status} | [{position}/{length}]\nAuthor: {artist}\nFull: {title}",
+
+    "on-click": "sleep 0.2s",
+    "on-click-middle": "bash ~/.config/hypr/scripts/utils/audio.sh play_pause",
+    "on-click-right": "bash ~/.config/hypr/scripts/utils/audio.sh next_track",
+    "on-double-click": "bash ~/.config/hypr/scripts/utils/audio.sh prev_track",
+    "on-scroll-down": "bash ~/.config/hypr/scripts/utils/audio.sh prev_track"
+  }
+}

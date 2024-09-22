@@ -1,0 +1,80 @@
+/* -----------------------------------------------------
+ * Workspace
+ * ----------------------------------------------------- */
+#workspaces, #taskbar {
+    background: @background-button;
+    transition: none;
+}
+
+/* -----------------------------------------------------
+ * Workspace, taskbar buttons
+ * Default button
+ * ----------------------------------------------------- */
+#workspaces button, #taskbar button {
+    color: black;
+    margin: 1px 3px;
+    padding: 0px;
+    border-radius: 100%;
+}
+
+#taskbar button {
+    background: @workspace-color-not-active;
+    border-radius: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* -----------------------------------------------------
+ * Workspace - selected button
+ * Swap space
+ * ----------------------------------------------------- */
+#workspaces button:hover, #taskbar button:hover {
+    background: @workspace-color-not-active;
+
+    border-radius: 10px;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+/* -----------------------------------------------------
+ * Workspace - hosting-monitor
+ * Space for not current monitor
+ * ----------------------------------------------------- */
+#workspaces button.hosting-monitor, #workspaces button.special {
+    background: @workspace-color-not-active;
+
+    border-radius: 10px;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+/* -----------------------------------------------------
+ * Workspace - work space
+ * Active space
+ * ----------------------------------------------------- */
+#workspaces button.persistent {
+    background: @workspace-color-active;
+}
+
+/* -----------------------------------------------------
+ * Workspace - active button
+ * Current active space
+ * ----------------------------------------------------- */
+#workspaces button.active, #taskbar button.active {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+
+    background-color: @workspace-color-active;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+/* -----------------------------------------------------
+ * Workspace - empty button
+ * Empty space
+ * ----------------------------------------------------- */
+#workspaces button.empty {
+    color: @color-text;
+    background: @workspace-color-not-active;
+}

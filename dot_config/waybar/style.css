@@ -1,0 +1,104 @@
+/*@import "../rofi/colors/dark.css";*/
+@import "../wofi/dark.css";
+
+/* -----------------------------------------------------
+ * Workspace
+ * ----------------------------------------------------- */
+@import "modules/workspaces.css";
+
+/* -----------------------------------------------------
+ * Padding
+ * ----------------------------------------------------- */
+@import "modules/spaces.css";
+
+/* -----------------------------------------------------
+ * General
+ * ----------------------------------------------------- */
+* {
+    font-family: "JetBrainsMono Nerd Font", cursive;
+    font-weight: bold;
+    font-size: 11px;
+    min-height: 10px;
+}
+
+#waybar {
+    background: none;
+    border-radius: 5px;
+}
+
+/* -----------------------------------------------------
+ * BUTTONs
+ * ----------------------------------------------------- */
+/* Any */
+#custom-wallpaper, #custom-notifications, #temperature, #custom-weather,
+#tray, #battery, #clock, #language, #idle_inhibitor, #mpris,
+
+    /* Logo group */
+#custom-logo, #custom-pacman, #custom-kernel, #custom-updates, #custom-version, #custom-hyprland,
+
+    /* Settings group */
+#pulseaudio, #bluetooth, #network, #privacy,
+
+    /* System info group */
+#custom-system, #cpu, #memory, #disk,
+
+    /* Power menu */
+#custom-power, #custom-lock, #custom-logout, #custom-reboot,
+
+    /* Workspace */
+#workspaces, #taskbar, #window
+{
+    padding-left: 5px;
+    padding-right: 5px;
+
+    color: @color-text;
+    background: @background-button;
+
+    border: 5px solid @background-border;
+}
+
+/* -----------------------------------------------------
+ * Border
+ * ----------------------------------------------------- */
+#custom-logo, #language, #custom-wallpaper, #mpris {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+#custom-system, #custom-power, #mpris, #window {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* Logo Button */
+#custom-logo {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* -----------------------------------------------------
+ * Tooltip dialog
+ * ----------------------------------------------------- */
+tooltip {
+    border-radius: 5px;
+    padding: 2px;
+    border: 2px solid @background-border;
+    background: @background-button;
+    color: @color-text;
+}
+
+tooltip label {
+    font-size: 14px;
+    color: @color-text;
+}
+
+/* -----------------------------------------------------
+ * PlayerCTL colors
+ * ----------------------------------------------------- */
+#mpris.playing {
+    color: @workspace-color-active;
+}
+
+#mpris.paused {
+    color: yellow;
+}

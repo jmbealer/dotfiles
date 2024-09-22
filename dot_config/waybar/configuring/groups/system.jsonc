@@ -1,0 +1,74 @@
+{
+  // System
+  "custom/system": {
+    "format": "",
+    "tooltip-format": "System information",
+    "interval": "once"
+  },
+  "group/system": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 450,
+      "children-class": "not-memory",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/system",
+      "cpu",
+      "memory",
+      "disk",
+      "temperature",
+      "idle_inhibitor",
+      "privacy"
+    ]
+  },
+  // Cpu usage
+  "cpu": {
+    "interval": 15,
+    "format": " {usage:2}%"
+  },
+  // Memory usage
+  "memory": {
+    "format": " {}%",
+    "tooltip-format": "RAM: {used:0.1f}GiB used"
+  },
+  // Disk / use
+  "disk": {
+    "interval": 90,
+    "format": " {percentage_used}%",
+    "path": "/"
+  },
+  // Cpu temp
+  "temperature": {
+    "interval": 25,
+    "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 75,
+    "format-critical": "<span foreground='red'>{temperatureC}°C </span>",
+    "format": "{temperatureC}°C "
+  },
+  // Privacy - screenshare, audio-out, audio-in
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  }
+}

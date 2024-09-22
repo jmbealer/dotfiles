@@ -1,0 +1,67 @@
+{
+  //Output (headphone)
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " {volume}%",
+    "format-icons": {
+      "headphone": " ",
+      "car": " ",
+      "default": ["", "", "", ""]
+    },
+
+    "tooltip-format": "{desc} // {volume}%\n\n󰎟 Binds\n 󰳽 click-left: Toggle Mute\n 󰳽 click-right: Open settings\n 󰳽 scroll: Volume control",
+
+    "on-click": "bash ~/.config/hypr/scripts/utils/audio.sh volume_mute",
+    "on-click-right": "pavucontrol",
+    "on-scroll-down": "bash ~/.config/hypr/scripts/utils/audio.sh volume_down",
+    "on-scroll-up": "bash ~/.config/hypr/scripts/utils/audio.sh volume_up"
+  },
+
+  // Group audio
+  "group/audio": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 450,
+      "children-class": "not-memory",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "pulseaudio",
+      "bluetooth",
+      "pulseaudio#microphone"
+    ]
+  },
+
+  //Input (Microphone)
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+
+
+    "tooltip-format": "{source_desc} // {source_volume}%\n\n󰎟 Binds\n 󰳽 click-left: Toggle Mute\n 󰳽 click-right: Open settings\n 󰳽 scroll: Volume control",
+
+    "on-click": "bash ~/.config/hypr/scripts/utils/audio.sh micro_mute",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "bash ~/.config/hypr/scripts/utils/audio.sh micro_volume_up",
+    "on-scroll-down": "bash ~/.config/hypr/scripts/utils/audio.sh micro_volume_down"
+  },
+
+  // Bluetooth
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {status}",
+    "format-connected-battery": " {device_battery_percentage}%",
+    "format-device-preference": [
+      "device1",
+      "device2"
+    ],
+    // preference list deciding the displayed device
+    "tooltip-format": "Devices - {num_connections} connected\n{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "Devices - {num_connections} connected\n{controller_alias}\t{controller_address}\n\nConnected:\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "blueberry",
+    "on-click-right": "blueberry"
+  }
+}
