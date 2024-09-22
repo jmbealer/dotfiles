@@ -1,0 +1,323 @@
+" autocmd DocStart .* source ~/.config/tridactyl/tridactylrc
+
+" General Settings
+set configversion 2.0
+/* set theme gruvbox-hard */
+set smoothscroll true
+/* set colorscheme base16-gruvbox-dark-hard */
+" " set color base16-gruvbox-dark-hard
+" set color zerogaku-custom
+" colourscheme --url https://raw.githubusercontent.com/JasonGrace2282/tridactyl-theme/main/twilight.css twilight
+colourscheme zerogakuCustom
+
+" Binds
+bind S back
+bind s scrollpx -50
+bind T tabnext
+bind t scrollline 10
+bind N tabprev
+bind n scrollline -10
+bind B forward
+bind H fillcmdline tabopen search
+bind h fillcmdline open search
+bind J current_url tabopen
+bind j fillcmdline tabopen
+bind L fillcmdline taball
+bind l fillcmdline tab
+bind b scrollpx 50
+bind ;x hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet("xdotool mousemove --sync " + window.devicePixelRatio * pos.x + " " + window.devicePixelRatio * pos.y + "; xdotool click 1")}
+bind ;X hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet("xdotool mousemove --sync " + window.devicePixelRatio * pos.x + " " + window.devicePixelRatio * pos.y + "; xdotool keydown ctrl+shift; xdotool click 1; xdotool keyup ctrl+shift")}
+bind <A-p> pin
+bind <A-m> mute toggle
+bind <F1> help
+bind o fillcmdline open
+bind O current_url open
+bind w fillcmdline winopen
+bind W current_url winopen
+bind ]] followpage next
+bind [[ followpage prev
+bind [c urlincrement -1
+bind ]c urlincrement 1
+bind <C-x> urlincrement -1
+bind <C-a> urlincrement 1
+bind yy clipboard yank
+bind ys clipboard yankshort
+bind yc clipboard yankcanon
+bind ym clipboard yankmd
+bind yo clipboard yankorg
+bind yt clipboard yanktitle
+bind gh home
+bind gH home true
+bind p clipboard open
+bind P clipboard tabopen
+bind <C-e> scrollline 10
+bind k scrollline -10
+bind <C-y> scrollline -10
+bind G scrollto 100
+bind gg scrollto 0
+bind <C-u> scrollpage -0.5
+bind <C-d> scrollpage 0.5
+unbind <C-f>
+bind <C-b> scrollpage -1
+bind <C-v> nmode ignore 1 mode normal
+bind $ scrollto 100 x
+bind ^ scrollto 0 x
+bind <C-o> jumpprev
+bind <C-i> jumpnext
+bind d tabclose
+bind D composite tabprev; tabclose #
+bind gx0 tabclosealltoleft
+bind gx$ tabclosealltoright
+bind << tabmove -1
+bind >> tabmove +1
+bind u undo
+bind U undo window
+bind r reload
+bind R reloadhard
+bind x stop
+bind gi focusinput -l
+bind g? rot13
+bind g! jumble
+bind g; changelistjump -1
+bind K tabnext
+bind gt tabnext_gt
+bind gT tabprev
+bind g^ tabfirst
+bind g0 tabfirst
+bind g$ tablast
+bind ga tabaudio
+bind gr reader
+bind gu urlparent
+bind gU urlroot
+bind gf viewsource
+bind : fillcmdline_notrail
+bind M gobble 1 quickmark
+bind ZZ qall
+bind f hint
+bind F hint -b
+bind gF hint -qb
+bind ;i hint -i
+bind ;b hint -b
+bind ;o hint
+bind ;I hint -I
+bind ;k hint -k
+bind ;K hint -K
+bind ;y hint -y
+bind ;Y hint -cF img i => tri.excmds.yankimage(tri.urlutils.getAbsoluteURL(i.src))
+bind ;p hint -p
+bind ;h hint -h
+bind v hint -h
+bind ;P hint -P
+bind ;r hint -r
+bind ;s hint -s
+bind ;S hint -S
+bind ;a hint -a
+bind ;A hint -A
+bind ;; hint -; *
+bind ;# hint -#
+bind ;v hint -W mpvsafe
+bind ;w hint -w
+bind ;t hint -W tabopen
+bind ;O hint -W fillcmdline_notrail open 
+bind ;W hint -W fillcmdline_notrail winopen 
+bind ;T hint -W fillcmdline_notrail tabopen 
+bind ;z hint -z
+bind ;m composite hint -Jpipe img src | open images.google.com/searchbyimage?image_url=
+bind ;M composite hint -Jpipe img src | tabopen images.google.com/searchbyimage?image_url=
+bind ;gi hint -qi
+bind ;gI hint -qI
+bind ;gk hint -qk
+bind ;gy hint -qy
+bind ;gp hint -qp
+bind ;gP hint -qP
+bind ;gr hint -qr
+bind ;gs hint -qs
+bind ;gS hint -qS
+bind ;ga hint -qa
+bind ;gA hint -qA
+bind ;g; hint -q;
+bind ;g# hint -q#
+bind ;gv hint -qW mpvsafe
+bind ;gw hint -qw
+bind ;gb hint -qb
+bind ;gF hint -qb
+bind ;gf hint -q
+bind <S-Insert> mode ignore
+bind <AC-Escape> mode ignore
+bind <AC-`> mode ignore
+bind <S-Escape> mode ignore
+bind <Escape> composite mode normal ; hidecmdline
+bind <C-[> composite mode normal ; hidecmdline
+bind a current_url bmark
+bind A bmark
+bind zi zoom 0.1 true
+bind zo zoom -0.1 true
+bind zm zoom 0.5 true
+bind zr zoom -0.5 true
+bind zM zoom 0.5 true
+bind zR zoom -0.5 true
+bind zz zoom 1
+bind zI zoom 3
+bind zO zoom 0.3
+bind . repeat
+bind <AS-ArrowUp><AS-ArrowUp><AS-ArrowDown><AS-ArrowDown><AS-ArrowLeft><AS-ArrowRight><AS-ArrowLeft><AS-ArrowRight>ba open https://www.youtube.com/watch?v=M3iOROuTuMA
+
+
+
+
+
+
+
+"
+" " WARNING: This file defines and runs a command called fixamo_quiet. If you
+" " also have a malicious addon that operates on `<all_urls>` installed this
+" " will allow it to steal your firefox account credentials!
+" "
+" " With those credentials, an attacker can read anything in your sync account,
+" " publish addons to the AMO, etc, etc.
+" "
+" " Without this command a malicious addon can steal credentials from any site
+" " that you visit that is not in the restrictedDomains list.
+" "
+" " You should comment out the fixamo lines unless you are entirely sure that
+" " they are what you want.
+" "
+" " The advantage of running the command is that you can use the tridactyl
+" " interface on addons.mozilla.org and other restricted sites.
+" 
+" " Provided only as an example.
+" " Do not install/run without reading through as you may be surprised by some
+" " of the settings.
+" 
+" " May require the latest beta builds.
+" 
+" "
+" " Binds
+" "
+" 
+" " Comment toggler for Reddit, Hacker News and Lobste.rs
+" bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
+" 
+" " GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
+" bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
+" 
+" " Git{Hub,Lab} git clone via SSH yank
+" bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+" 
+" " As above but execute it and open terminal in folder
+" bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
+" 
+" 
+" " make d take you to the left (I find it much less confusing)
+" bind d composite tabprev; tabclose #
+" bind D tabclose
+" 
+" " make t open the selection with tabopen
+" bind --mode=visual t composite js document.getSelection().toString() | fillcmdline tabopen
+" 
+" " I like wikiwand but I don't like the way it changes URLs
+" bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
+" 
+" " Make gu take you back to subreddit from comments
+" bindurl reddit.com gu urlparent 4
+" 
+" " Only hint search results on Google and DDG
+" bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
+" bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
+" 
+" 
+" " DDG binds are broken as of May 2021
+" " bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
+" " bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+" 
+" " Allow Ctrl-a to select all in the commandline
+" unbind --mode=ex <C-a>
+" 
+" " Allow Ctrl-c to copy in the commandline
+" unbind --mode=ex <C-c>
+" 
+" " Handy multiwindow/multitasking binds
+" bind gd tabdetach
+" bind gD composite tabduplicate; tabdetach
+" 
+" " Stupid workaround to let hint -; be used with composite which steals semi-colons
+" command hint_focus hint -;
+" 
+" " Open right click menu on links
+" bind ;C composite hint_focus; !s xdotool key Menu
+" 
+" " Suspend / "discard" all tabs - handy for stretching out battery life
+" command discardall jsb browser.tabs.query({}).then(ts => browser.tabs.discard(ts.map(t=>t.id)))
+" 
+" " Julia docs' built in search is bad
+" set searchurls.julia https://www.google.com/search?q=site:http://docs.julialang.org/en/v1%20
+" 
+" "
+" " Misc settings
+" "
+" 
+" " set editorcmd to suckless terminal, or use the defaults on other platforms
+" js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "st vim" : "auto"; tri.config.set("editorcmd", editorcmd)})
+" 
+" 
+" " Sane hinting mode
+set hintfiltermode vimperator-reflow
+set hintnames numeric
+" 
+" " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
+set hintdelay 100
+" 
+" " Add helper commands that Mozillians think make Firefox irredeemably
+" " insecure. For details, read the comment at the top of this file.
+command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+command fixamo js tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""').then(tri.excmds.fillcmdline_tmp(3000, "Permissions added to user.js. Please restart Firefox to make them take affect.")))
+" 
+" " Make Tridactyl work on more sites at the expense of some security. For
+" " details, read the comment at the top of this file.
+fixamo_quiet
+" 
+" " Equivalent to `set csp clobber` before it was removed. This weakens your
+" " defences against cross-site-scripting attacks and other types of
+" " code-injection by reducing the strictness of Content Security Policy on
+" " every site in a couple of ways.
+" "
+" " You may not wish to run this. Mozilla strongly feels that you shouldn't.
+" "
+" " It allows Tridactyl to function on more pages, e.g. raw GitHub pages.
+" " 
+" " We remove the sandbox directive
+" " https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox
+" " which allows our iframe to run (and anyone else's) on any website.
+" "
+" " We weaken the style-src directive
+" " https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
+" " to allow us to theme our elements. This exposes you to 'cross site styling'
+" " attacks.
+" "
+" " Read https://wiki.mozilla.org/Security/CSP#Goals for more information.
+jsb browser.webRequest.onHeadersReceived.addListener(tri.request.clobberCSP,{urls:["<all_urls>"],types:["main_frame"]},["blocking","responseHeaders"])
+" 
+" " Make quickmarks for the sane Tridactyl issue view
+" quickmark t https://github.com/tridactyl/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
+" 
+" " Inject Google Translate
+" " This (clearly) is remotely hosted code. Google will be sent the whole
+" " contents of the page you are on if you run `:translate`
+" " From https://github.com/jeremiahlee/page-translator
+" command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
+" 
+" "
+" " URL redirects
+" "
+" 
+" " New reddit is bad
+" autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+" " Mosquito nets won't make themselves
+" autocmd DocStart ^http(s?)://www.amazon.co.uk js tri.excmds.urlmodify("-t", "www", "smile")
+" 
+" " Isolate Facebook in its own container
+" " set auconcreatecontainer true
+" " autocontain facebook\.com facebook
+" 
+" " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" " vim: set filetype=tridactyl
